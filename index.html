@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>스마일데이즈 · 이주영</title>
+<meta name="description" content="스마일데이즈 이주영 — 흔들리는 30대, 서툰 엄마인 당신에게. 두 딸을 키워낸 개똥철학자의 솔직하고 따뜻한 이야기." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  :root {
+    --bg: #FBF8F3;
+    --bg-soft: #EFEEE3;
+    --cream: #E8DFCB;
+    --sage: #D4DCC8;
+    --sage-deep: #B8C5A5;
+    --accent: #3D5C4A;
+    --accent-deep: #2A4234;
+    --ink: #2D342E;
+    --ink-soft: #62695E;
+    --line: #E2E4D8;
+    --white: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Pretendard Variable', Pretendard, 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .serif {
+    font-family: 'Noto Serif KR', 'Apple SD Gothic Neo', serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ── Layout ────────────────────────── */
+  .container {
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  section {
+    padding: 96px 0;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.3;
+    margin: 0 0 36px;
+  }
+
+  /* ── Nav ───────────────────────────── */
+  nav.top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 248, 243, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .brand .dot { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+
+  /* ── Hero ──────────────────────────── */
+  .hero {
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 70%);
+    opacity: 0.6;
+    z-index: 0;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: -160px;
+    left: -120px;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, var(--cream) 0%, transparent 70%);
+    opacity: 0.7;
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  @media (max-width: 820px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.18;
+    margin: 0 0 18px;
+    font-weight: 500;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .hero h1 .name {
+    display: block;
+    font-size: 0.55em;
+    color: var(--ink-soft);
+    font-weight: 400;
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-tagline {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0 0 32px;
+    max-width: 460px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .hero-tagline strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .chip {
+    font-size: 13px;
+    padding: 7px 14px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink-soft);
+  }
+
+  /* Portrait */
+  .portrait {
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(135deg, var(--sage), var(--cream));
+    border-radius: 280px 280px 24px 24px;
+    position: relative;
+    box-shadow: 0 20px 50px -25px rgba(45, 60, 50, 0.32);
+    overflow: hidden;
+  }
+
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;
+    display: block;
+  }
+
+  /* ── About ─────────────────────────── */
+  .about {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  @media (max-width: 820px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .about-image {
+    aspect-ratio: 3 / 4;
+    background: linear-gradient(160deg, var(--cream), var(--sage));
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-image::after {
+    content: "사진 자리";
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    color: rgba(45, 52, 46, 0.42);
+    letter-spacing: 0.1em;
+  }
+
+  .story p {
+    margin: 0 0 22px;
+    color: var(--ink);
+    font-size: 16.5px;
+    line-height: 1.95;
+  }
+
+  .story p.lead {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 20px;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 30px;
+  }
+
+  .story em {
+    font-style: normal;
+    background: linear-gradient(transparent 65%, var(--sage) 65%);
+    padding: 0 2px;
+  }
+
+  /* ── Service ───────────────────────── */
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, var(--sage) 0%, transparent 65%);
+    opacity: 0.5;
+  }
+
+  .service-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .service-card h3 {
+    font-size: 26px;
+    margin: 0 0 18px;
+    font-weight: 500;
+  }
+
+  .service-card p {
+    color: var(--ink-soft);
+    line-height: 1.95;
+    font-size: 16px;
+    margin: 0 0 16px;
+  }
+
+  .badge-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 10px 18px;
+    background: var(--bg-soft);
+    border-radius: 999px;
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .badge-soon::before {
+    content: "";
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  /* Service questions list */
+  .questions {
+    list-style: none;
+    margin: 28px 0 8px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .questions li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 22px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+
+  .questions li::before {
+    content: "“";
+    font-family: 'Noto Serif KR', serif;
+    font-size: 32px;
+    line-height: 0.8;
+    color: var(--accent);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Notify form */
+  .notify {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .notify-label {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin: 0 0 14px;
+  }
+
+  .notify-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    max-width: 480px;
+  }
+
+  .notify-form input[type="email"] {
+    flex: 1;
+    min-width: 220px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--white);
+    font-family: inherit;
+    font-size: 14.5px;
+    color: var(--ink);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .notify-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(61, 92, 74, 0.18);
+  }
+
+  .notify-form input[type="email"]::placeholder {
+    color: #A8AFA0;
+  }
+
+  .notify-form button {
+    padding: 14px 26px;
+    border: none;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--white);
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .notify-form button:hover {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+  }
+
+  /* ── Daily Logs ────────────────────── */
+  .logs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 720px) {
+    .logs-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 460px) {
+    .logs-grid { grid-template-columns: 1fr; }
+  }
+
+  .log-card {
+    aspect-ratio: 9 / 14;
+    background: linear-gradient(160deg, var(--bg-soft), var(--cream));
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .log-card:nth-child(2) { background: linear-gradient(160deg, var(--sage), var(--cream)); }
+  .log-card:nth-child(3) { background: linear-gradient(160deg, var(--cream), var(--sage)); }
+  .log-card:nth-child(5) { background: linear-gradient(160deg, var(--sage), var(--bg-soft)); }
+  .log-card:nth-child(6) { background: linear-gradient(160deg, var(--bg-soft), var(--sage-deep)); }
+
+  .log-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -25px rgba(45, 60, 50, 0.38);
+  }
+
+  .log-card .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px; height: 56px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .log-card .play::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: 14px solid var(--ink);
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+    margin-left: 4px;
+  }
+
+  .log-card .label {
+    position: absolute;
+    bottom: 16px;
+    left: 18px;
+    right: 18px;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 8px 12px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Happiness Gallery ─────────────── */
+  .happiness {
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .happiness-intro {
+    max-width: 560px;
+    color: var(--ink-soft);
+    font-size: 16.5px;
+    line-height: 1.9;
+    margin-bottom: 48px;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: 16px;
+  }
+
+  @media (max-width: 720px) {
+    .gallery {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 180px);
+    }
+    .gallery .g1 { grid-column: span 2; }
+  }
+
+  .gallery > div {
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--bg-soft), var(--cream));
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gallery .g1 {
+    grid-row: span 2;
+    background: linear-gradient(140deg, var(--sage), var(--cream));
+  }
+  .gallery .g3 { background: linear-gradient(140deg, var(--cream), var(--sage)); }
+  .gallery .g4 { background: linear-gradient(140deg, var(--bg-soft), var(--sage-deep)); }
+  .gallery .g5 { background: linear-gradient(140deg, var(--sage), var(--bg-soft)); }
+
+  .gallery > div::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 14px;
+    left: 16px;
+    color: rgba(45, 52, 46, 0.55);
+    font-family: 'Noto Serif KR', serif;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Footer ────────────────────────── */
+  footer {
+    padding: 72px 0 56px;
+    background: var(--bg);
+    text-align: center;
+  }
+
+  .footer-msg {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 32px;
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 14.5px;
+    color: var(--ink);
+    transition: all 0.25s ease;
+  }
+
+  .footer-link:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .footer-link svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .copyright {
+    font-size: 13px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .copyright .heart { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="#top" class="brand">스마일데이즈<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#about">나의 이야기</a>
+      <a href="#service">기질 명리</a>
+      <a href="#logs">Daily Logs</a>
+      <a href="#happiness">My Happiness</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ───────── Hero ───────── -->
+<header class="hero" id="top">
+  <div class="container hero-inner">
+    <div>
+      <span class="section-label">Smiledaze · 스마일데이즈</span>
+      <h1>
+        흔들리는 30대,<br />서툰 엄마인 당신에게.
+        <span class="name">— 이주영, 개똥철학자</span>
+      </h1>
+      <p class="hero-tagline">
+        엄마가 되고 나서<br />
+        더 자주 길을 잃는 당신에게,<br />
+        <strong>먼저 그 길을 걸어본 사람</strong>의<br />
+        담담한 한 마디를 건네고 싶어요.
+      </p>
+      <div class="hero-meta">
+        <span class="chip">두 딸을 키운 엄마</span>
+        <span class="chip">릴스 크리에이터</span>
+        <span class="chip">기질 명리 상담가 (준비 중)</span>
+      </div>
+    </div>
+    <div>
+      <div class="portrait">
+        <img src="portrait.jpg" alt="스마일데이즈 이주영" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ───────── About ───────── -->
+<section class="about" id="about">
+  <div class="container">
+    <span class="section-label">About</span>
+    <h2 class="section-title">나의 이야기</h2>
+
+    <div class="about-grid">
+      <div class="about-image"></div>
+      <div class="story">
+        <p class="lead">
+          저는 <em>두 딸을 키워낸 엄마</em>이고,<br />
+          스스로를 '개똥철학자'라고 부르는 사람입니다.
+        </p>
+
+        <p>
+          지금은 다 큰 두 딸이지만, 저에게도 <strong>30대가 있었어요.</strong> 신생아를 안고 새벽에 우두커니 앉아 있던 밤들, 아이가 왜 우는지 몰라 같이 울었던 오후들, '나는 좋은 엄마인가' 자문하다 결국 나를 미워하게 되던 날들 — 그 시간을 모르는 척 지나온 사람은 아니에요. <strong>당신의 지금, 저도 지나왔습니다.</strong>
+        </p>
+
+        <p>
+          엄마로 살아오며 두 번의 큰 파도도 만났어요. <strong>2005년 갑상선암 수술</strong>, 그리고 <strong>2008년 모야모야병</strong>으로 뇌혈관 간접문합술. 어린 두 딸을 두고 병상에 누워 있던 그 시간이 저에게 가르쳐 준 것이 있어요. <em>인생은 흔들리는 게 당연하다는 것</em>, 그리고 무너졌다 다시 일어서는 사람의 마음이 가장 단단하다는 것.
+        </p>
+
+        <p>
+          오래 회계를 가르치는 일을 했지만, 그 시절 칠판 앞에서도 늘 더 궁금했던 건 숫자가 아니라 <strong>사람의 마음</strong>이었습니다. 그래서 지금은 사람의 타고난 기질을 읽는 <strong>명리 상담가</strong>의 길을 준비하고 있어요. 두 딸을 키우며, 나를 키우며 깨달은 것들을 차곡차곡 그 공부에 담아 가는 중이에요.
+        </p>
+
+        <p>
+          인스타그램 <strong>@_smiledaze</strong>에서 비슷한 마음의 친구들 8천여 명과 매일의 작은 장면을 나누고 있습니다. 완벽한 어른인 척하지 않으려고 해요. 그저 한 발 먼저 걸어본 사람으로, 당신 곁에 잠시 앉아 있는 그런 페이지가 되고 싶습니다.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Service ───────── -->
+<section id="service">
+  <div class="container">
+    <span class="section-label">Service</span>
+    <h2 class="section-title">기질 명리 상담</h2>
+
+    <div class="service-card">
+      <div class="service-inner">
+        <h3>당신의 결을 읽어드립니다.</h3>
+        <p>
+          요즘 이런 질문들 사이에서 길을 잃고 계신가요?
+        </p>
+
+        <ul class="questions">
+          <li>왜 우리 아이는 다른 아이랑 이렇게 다를까.</li>
+          <li>남편은 왜 매번 저런 식으로 반응할까.</li>
+          <li>나는 왜 자꾸 나를 미워하게 될까.</li>
+        </ul>
+
+        <p>
+          기질 명리 상담은 이 세 가지 질문에 <strong>'당신이 이상한 게 아니다'</strong>라는 대답을 천천히 풀어드리는 시간이에요. 사람마다 타고난 결이 다르다는 걸 알게 되면, 아이도 남편도 — 그리고 무엇보다 <strong>나 자신</strong>을 조금 더 너그럽게 안아줄 수 있게 됩니다. 어렵고 거창한 풀이가 아니라, 옆집 언니가 따뜻한 차 한 잔 내어주듯 그렇게 들려드릴게요.
+        </p>
+
+        <span class="badge-soon">조용히 준비 중입니다</span>
+
+        <div class="notify">
+          <p class="notify-label">런칭하면 가장 먼저 알려드릴게요.</p>
+          <form class="notify-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='신청 완료 ✓';">
+            <input type="email" placeholder="이메일을 남겨주세요" required />
+            <button type="submit">알림 받기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Daily Logs ───────── -->
+<section id="logs">
+  <div class="container">
+    <span class="section-label">Daily Logs</span>
+    <h2 class="section-title">일상의 작은 장면들</h2>
+    <p class="happiness-intro">
+      인스타 릴스와 유튜브 쇼츠로 기록하는, 흘러가는 하루의 한 조각들.
+    </p>
+
+    <div class="logs-grid">
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">30대의 너에게</div>
+      </div>
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">엄마라는 이름이 무거울 때</div>
+      </div>
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">딸을 키우며 배운 것</div>
+      </div>
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">시드니 여행기 · 1편</div>
+      </div>
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">시드니 여행기 · 2편</div>
+      </div>
+      <div class="log-card">
+        <div class="play"></div>
+        <div class="label">오늘의 개똥철학</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── My Happiness ───────── -->
+<section class="happiness" id="happiness">
+  <div class="container">
+    <span class="section-label">My Happiness</span>
+    <h2 class="section-title">제 행복의 풍경</h2>
+    <p class="happiness-intro">
+      두 딸을 키우며 알게 된 것 — 엄마도 매일 서툴고, 그래도 괜찮다는 것.<br />
+      남편, 두 딸, 그리고 우리 집 호두. 이 다섯이 제 일상의 가장 큰 풍경입니다.
+    </p>
+
+    <div class="gallery">
+      <div class="g1" data-label="가족"></div>
+      <div class="g2" data-label="첫째"></div>
+      <div class="g3" data-label="둘째"></div>
+      <div class="g4" data-label="호두"></div>
+      <div class="g5" data-label="우리의 식탁"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Footer ───────── -->
+<footer>
+  <div class="container">
+    <p class="footer-msg">
+      서툰 엄마인 당신에게,<br />오늘도 무사한 하루이기를.
+    </p>
+
+    <div class="footer-links">
+      <a class="footer-link" href="https://instagram.com/_smiledaze" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+        </svg>
+        Instagram · @_smiledaze
+      </a>
+      <a class="footer-link" href="https://brunch.co.kr/@smiledaze" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h11a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4V5z" />
+          <path d="M9 9h6M9 13h4" />
+        </svg>
+        Brunch · @smiledaze
+      </a>
+    </div>
+
+    <p class="copyright">
+      &copy; 2026 스마일데이즈 이주영 <span class="heart">·</span> Made with quiet days
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
