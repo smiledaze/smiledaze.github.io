@@ -448,72 +448,16 @@
   /* ── Daily Logs ────────────────────── */
   .logs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(326px, 1fr));
     gap: 20px;
+    justify-items: center;
+    align-items: start;
   }
 
-  @media (max-width: 720px) {
-    .logs-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 460px) {
-    .logs-grid { grid-template-columns: 1fr; }
-  }
-
-  .log-card {
-    aspect-ratio: 9 / 14;
-    background: linear-gradient(160deg, var(--bg-soft), var(--cream));
-    border-radius: 14px;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-
-  .log-card:nth-child(2) { background: linear-gradient(160deg, var(--sage), var(--cream)); }
-  .log-card:nth-child(3) { background: linear-gradient(160deg, var(--cream), var(--sage)); }
-  .log-card:nth-child(5) { background: linear-gradient(160deg, var(--sage), var(--bg-soft)); }
-  .log-card:nth-child(6) { background: linear-gradient(160deg, var(--bg-soft), var(--sage-deep)); }
-
-  .log-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -25px rgba(45, 60, 50, 0.38);
-  }
-
-  .log-card .play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 56px; height: 56px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-
-  .log-card .play::after {
-    content: "";
-    width: 0; height: 0;
-    border-left: 14px solid var(--ink);
-    border-top: 9px solid transparent;
-    border-bottom: 9px solid transparent;
-    margin-left: 4px;
-  }
-
-  .log-card .label {
-    position: absolute;
-    bottom: 16px;
-    left: 18px;
-    right: 18px;
-    color: var(--ink);
-    font-size: 13px;
-    font-weight: 500;
-    background: rgba(255, 255, 255, 0.85);
-    padding: 8px 12px;
-    border-radius: 8px;
-    backdrop-filter: blur(4px);
+  .logs-grid .instagram-media {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
   }
 
   /* ── Happiness Gallery ─────────────── */
@@ -754,30 +698,12 @@
     </p>
 
     <div class="logs-grid">
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">30대의 너에게</div>
-      </div>
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">엄마라는 이름이 무거울 때</div>
-      </div>
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">딸을 키우며 배운 것</div>
-      </div>
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">시드니 여행기 · 1편</div>
-      </div>
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">시드니 여행기 · 2편</div>
-      </div>
-      <div class="log-card">
-        <div class="play"></div>
-        <div class="label">오늘의 개똥철학</div>
-      </div>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/CxVgA2PxFd3/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cwkp5fshuAu/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/CwsiPP-xvUT/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/C0dn0AtxE4s/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/Cw0BZ6PxJyl/" data-instgrm-version="14"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/CymO7tRSeXS/" data-instgrm-version="14"></blockquote>
     </div>
   </div>
 </section>
@@ -832,6 +758,8 @@
     </p>
   </div>
 </footer>
+
+<script async src="//www.instagram.com/embed.js"></script>
 
 </body>
 </html>
