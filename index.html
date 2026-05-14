@@ -315,6 +315,33 @@
     margin: 0 0 16px;
   }
 
+  .cta-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    margin-right: 12px;
+    padding: 14px 30px;
+    background: #3D5C4A;
+    color: var(--white);
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .cta-apply:hover {
+    background: var(--accent-deep);
+    transform: translateY(-1px);
+    color: var(--white);
+  }
+  .cta-apply::after {
+    content: "→";
+    font-size: 16px;
+    line-height: 1;
+  }
+
   .badge-soon {
     display: inline-flex;
     align-items: center;
@@ -673,6 +700,7 @@
           기질 명리 상담은 이 세 가지 질문에 <strong>'당신이 이상한 게 아니다'</strong>라는 대답을 천천히 풀어드리는 시간이에요. 사람마다 타고난 결이 다르다는 걸 알게 되면, 아이도 남편도 — 그리고 무엇보다 <strong>나 자신</strong>을 조금 더 너그럽게 안아줄 수 있게 됩니다. 어렵고 거창한 풀이가 아니라, 옆집 언니가 따뜻한 차 한 잔 내어주듯 그렇게 들려드릴게요.
         </p>
 
+        <a href="board.html" class="cta-apply">상담 신청하기</a>
         <span class="badge-soon">조용히 준비 중입니다</span>
         <p class="cert-note">명리적성심리상담사 1급·2급 자격 보유 (2025년 3월 취득)</p>
 

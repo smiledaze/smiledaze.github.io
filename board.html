@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>간단 게시판</title>
+<style>
+  :root {
+    --bg: #faf8f3;
+    --accent: #3D5C4A;
+    --accent-soft: #3D5C4A1a;
+    --text: #2a2a2a;
+    --muted: #8a8a8a;
+    --border: #e6e2d8;
+    --card: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--accent);
+    font-size: 28px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 18px;
+    transition: opacity 0.15s, transform 0.05s;
+  }
+
+  button:active { transform: translateY(1px); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  .btn-ghost:hover { background: var(--accent-soft); }
+
+  .btn-danger {
+    background: transparent;
+    color: #b04a3b;
+    border: 1px solid #b04a3b;
+  }
+  .btn-danger:hover { background: #b04a3b1a; }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .post-item:hover {
+    border-color: var(--accent);
+    transform: translateX(2px);
+  }
+
+  .post-item-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .post-item-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .post-item-title .lock {
+    margin-right: 6px;
+    font-size: 14px;
+  }
+
+  .visibility-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .visibility-option {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    background: var(--card);
+    color: var(--text);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .visibility-option:hover { border-color: var(--accent); }
+  .visibility-option.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  input[type="password"] {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="password"]:focus { border-color: var(--accent); }
+
+  .lock-screen {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 32px 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  .lock-screen-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .lock-screen-msg {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .lock-form {
+    display: flex;
+    gap: 8px;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .lock-form input { flex: 1; }
+
+  .empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type="text"]:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+
+  textarea {
+    min-height: 240px;
+    resize: vertical;
+    font-family: inherit;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+
+  .detail-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px 0;
+  }
+
+  .detail-date {
+    font-size: 13px;
+    color: var(--muted);
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .detail-content {
+    font-size: 15px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    min-height: 200px;
+  }
+
+  .detail-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 onclick="showList()">게시판</h1>
+    <button id="writeBtn" class="btn-primary" onclick="showWrite()">글쓰기</button>
+  </header>
+
+  <section id="listView">
+    <ul id="postList" class="post-list"></ul>
+    <div id="emptyMsg" class="empty hidden">아직 작성된 글이 없습니다.</div>
+  </section>
+
+  <section id="writeView" class="hidden">
+    <div class="form-group">
+      <label for="titleInput">제목</label>
+      <input type="text" id="titleInput" placeholder="제목을 입력하세요" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label>공개 설정</label>
+      <div class="visibility-group">
+        <div id="visPublic" class="visibility-option active" onclick="setVisibility('public')">공개</div>
+        <div id="visPrivate" class="visibility-option" onclick="setVisibility('private')">🔒 비공개</div>
+      </div>
+    </div>
+    <div id="passwordGroup" class="form-group hidden">
+      <label for="passwordInput">비밀번호</label>
+      <input type="password" id="passwordInput" placeholder="비밀번호를 입력하세요" maxlength="50">
+    </div>
+    <div class="form-group">
+      <label for="contentInput">내용</label>
+      <textarea id="contentInput" placeholder="내용을 입력하세요"></textarea>
+    </div>
+    <div class="actions">
+      <button class="btn-ghost" onclick="showList()">취소</button>
+      <button class="btn-primary" onclick="savePost()">등록</button>
+    </div>
+  </section>
+
+  <section id="detailView" class="hidden">
+    <h2 id="detailTitle" class="detail-title"></h2>
+    <div id="detailDate" class="detail-date"></div>
+
+    <div id="lockScreen" class="lock-screen hidden">
+      <div class="lock-screen-icon">🔒</div>
+      <div class="lock-screen-msg">비공개 글입니다. 비밀번호를 입력하세요.</div>
+      <form class="lock-form" onsubmit="event.preventDefault(); unlockPost();">
+        <input type="password" id="unlockInput" placeholder="비밀번호" maxlength="50">
+        <button type="submit" class="btn-primary">확인</button>
+      </form>
+    </div>
+
+    <div id="detailContent" class="detail-content"></div>
+
+    <div class="detail-actions">
+      <button class="btn-ghost" onclick="showList()">목록</button>
+      <button id="deleteBtn" class="btn-danger" onclick="deleteCurrentPost()">삭제</button>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://nlvabuvodszitjakkstj.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_sgM47RMjUd-9VF1h_STuXQ_9U5y7xR8';
+  const PW_SALT = 'board_v1_';
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  let currentPostId = null;
+  let currentVisibility = 'public';
+
+  async function hashPassword(pw) {
+    const bytes = new TextEncoder().encode(PW_SALT + pw);
+    const digest = await crypto.subtle.digest('SHA-256', bytes);
+    return Array.from(new Uint8Array(digest))
+      .map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function formatDate(ts) {
+    const d = new Date(ts);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+  }
+
+  function showView(name) {
+    ['listView', 'writeView', 'detailView'].forEach(id => {
+      document.getElementById(id).classList.toggle('hidden', id !== name);
+    });
+    document.getElementById('writeBtn').classList.toggle('hidden', name !== 'listView');
+  }
+
+  async function showList() {
+    currentPostId = null;
+    const listEl = document.getElementById('postList');
+    const emptyEl = document.getElementById('emptyMsg');
+    listEl.innerHTML = '';
+    emptyEl.classList.add('hidden');
+    showView('listView');
+
+    const { data: posts, error } = await db
+      .from('posts')
+      .select('id, title, created_at, is_private')
+      .order('created_at', { ascending: false });
+
+    if (error) {
+      alert('글 목록 불러오기 실패: ' + error.message);
+      return;
+    }
+
+    if (!posts || posts.length === 0) {
+      emptyEl.classList.remove('hidden');
+      return;
+    }
+
+    posts.forEach(p => {
+      const li = document.createElement('li');
+      li.className = 'post-item';
+      li.onclick = () => showDetail(p);
+      const lockIcon = p.is_private ? '<span class="lock">🔒</span>' : '';
+      li.innerHTML = `
+        <div class="post-item-title">${lockIcon}${escapeHtml(p.title)}</div>
+        <div class="post-item-date">${formatDate(p.created_at)}</div>
+      `;
+      listEl.appendChild(li);
+    });
+  }
+
+  function showWrite() {
+    document.getElementById('titleInput').value = '';
+    document.getElementById('contentInput').value = '';
+    document.getElementById('passwordInput').value = '';
+    setVisibility('public');
+    showView('writeView');
+    document.getElementById('titleInput').focus();
+  }
+
+  function setVisibility(v) {
+    currentVisibility = v;
+    document.getElementById('visPublic').classList.toggle('active', v === 'public');
+    document.getElementById('visPrivate').classList.toggle('active', v === 'private');
+    document.getElementById('passwordGroup').classList.toggle('hidden', v !== 'private');
+    if (v === 'private') {
+      document.getElementById('passwordInput').focus();
+    }
+  }
+
+  async function showDetail(post) {
+    currentPostId = post.id;
+    document.getElementById('detailTitle').textContent = (post.is_private ? '🔒 ' : '') + post.title;
+    document.getElementById('detailDate').textContent = formatDate(post.created_at);
+
+    const lockEl = document.getElementById('lockScreen');
+    const contentEl = document.getElementById('detailContent');
+    const deleteBtn = document.getElementById('deleteBtn');
+
+    if (post.is_private) {
+      lockEl.classList.remove('hidden');
+      contentEl.classList.add('hidden');
+      deleteBtn.classList.add('hidden');
+      document.getElementById('unlockInput').value = '';
+      showView('detailView');
+      setTimeout(() => document.getElementById('unlockInput').focus(), 0);
+      return;
+    }
+
+    lockEl.classList.add('hidden');
+    contentEl.classList.remove('hidden');
+    deleteBtn.classList.remove('hidden');
+    contentEl.textContent = '불러오는 중...';
+    showView('detailView');
+
+    const { data, error } = await db
+      .from('posts')
+      .select('content')
+      .eq('id', post.id)
+      .single();
+    if (error) {
+      alert('글 불러오기 실패: ' + error.message);
+      showList();
+      return;
+    }
+    contentEl.textContent = data.content;
+  }
+
+  async function unlockPost() {
+    const input = document.getElementById('unlockInput');
+    const entered = input.value;
+    if (!entered) { input.focus(); return; }
+    const hash = await hashPassword(entered);
+
+    const { data, error } = await db
+      .from('posts')
+      .select('content')
+      .eq('id', currentPostId)
+      .eq('password', hash)
+      .maybeSingle();
+
+    if (error) {
+      alert('인증 실패: ' + error.message);
+      return;
+    }
+    if (!data) {
+      alert('비밀번호가 일치하지 않습니다.');
+      input.value = '';
+      input.focus();
+      return;
+    }
+
+    document.getElementById('lockScreen').classList.add('hidden');
+    const contentEl = document.getElementById('detailContent');
+    contentEl.textContent = data.content;
+    contentEl.classList.remove('hidden');
+    document.getElementById('deleteBtn').classList.remove('hidden');
+  }
+
+  async function savePost() {
+    const title = document.getElementById('titleInput').value.trim();
+    const content = document.getElementById('contentInput').value.trim();
+    if (!title) { alert('제목을 입력하세요.'); return; }
+    if (!content) { alert('내용을 입력하세요.'); return; }
+
+    const isPrivate = currentVisibility === 'private';
+    const row = { title, content, is_private: isPrivate, password: null };
+
+    if (isPrivate) {
+      const pw = document.getElementById('passwordInput').value;
+      if (!pw) { alert('비밀번호를 입력하세요.'); return; }
+      row.password = await hashPassword(pw);
+    }
+
+    const { error } = await db.from('posts').insert(row);
+    if (error) {
+      alert('글 저장 실패: ' + error.message);
+      return;
+    }
+    showList();
+  }
+
+  async function deleteCurrentPost() {
+    if (!currentPostId) return;
+    if (!confirm('이 글을 삭제하시겠습니까?')) return;
+    const { error } = await db.from('posts').delete().eq('id', currentPostId);
+    if (error) {
+      alert('삭제 실패: ' + error.message);
+      return;
+    }
+    showList();
+  }
+
+  showList();
+</script>
+</body>
+</html>
